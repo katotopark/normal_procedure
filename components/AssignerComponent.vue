@@ -1,22 +1,32 @@
 <template>
   <div>
-    {{ casePrefix + '-' + caseNumber }}
+    <vue-p5 v-on="{setup, draw}"/>
   </div>
 </template>
 <script>
-import Faker from 'faker'
+var components = {}
+if (process.client) {
+  const VueP5 = require('vue-p5')
+  components.VueP5 = VueP5
+}
 
 export default {
+  components: components,
   data() {
     return {
       caseNumber: '',
       casePrefix: ''
     }
   },
-  mounted() {
-    this.casePrefix = Faker.random.alphaNumeric().toUpperCase()
-    this.caseNumber = Faker.random.number(10000)
-    console.log(`assigner mounted => ${this.casePrefix}-${this.caseNumber}`)
+  methods: {
+    setup(sk) {
+      sk.createCanvas(sk.windowWidth / 2, sk.windowHeight / 2)
+      sk.background(100)
+    },
+    draw(sk) {
+      sk.stroke(0)
+      sk.line(sk.pmouseX, sk.pmouseY, sk.mouseX, sk.mouseY)
+    }
   }
 }
 </script>

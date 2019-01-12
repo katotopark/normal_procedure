@@ -1,68 +1,16 @@
 <template>
-  <el-row
-    class="container"
-    type="flex"
-    justify="center">
-    <el-col :span="12">
-      <span v-if="counter == 0">
-        <name-input-component @catch-input="catchName"/>
-      </span>
-      <span v-else-if="counter == 1">
-        <bot-input-component @catch-input="catchBot"/>
-      </span>
-      <span v-else-if="counter == 2">
-        <assigner-component ref="caseAssigner"/>
-      </span>
-    </el-col>
-  </el-row>
+  <div>
+    {{ msg }}
+  </div>
 </template>
-
 <script>
-import NameInputComponent from '../components/NameInputComponent.vue'
-import BotInputComponent from '../components/BotInputComponent.vue'
-import AssignerComponent from '../components/AssignerComponent.vue'
-
 export default {
-  components: {
-    NameInputComponent,
-    BotInputComponent,
-    AssignerComponent
-  },
   data() {
     return {
-      name: '',
-      bot: '',
-      gotName: false,
-      gotBot: false,
-      counter: 0
-    }
-  },
-  watch: {
-    counter() {
-      console.log('counter has changed', this.counter)
-    }
-  },
-  methods: {
-    catchName(e) {
-      if (e !== '') {
-        this.name = e
-        this.gotName = true
-      }
-      this.counter = 1
-      console.log('got name ', this.name)
-    },
-    catchBot(e) {
-      this.bot = e
-      this.gotBot = true
-      this.counter = 2
-      console.log('got bot ', this.bot)
+      msg: 'hello from the game'
     }
   }
 }
 </script>
-
-<style>
-.container {
-  margin-top: 50px;
-}
+<style scoped>
 </style>
