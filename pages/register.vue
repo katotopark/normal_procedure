@@ -11,7 +11,7 @@
         <bot-input-component @catch-input="catchBot"/>
       </span>
       <span v-else-if="counter == 2">
-        <assigner-component ref="caseAssigner"/>
+        <assigner-component/>
       </span>
     </el-col>
   </el-row>
@@ -39,9 +39,8 @@ export default {
     counter() {
       if (this.counter == 2)
         setTimeout(() => {
-          console.log('pushin the router')
           this.pushRoute()
-        }, 5000)
+        }, 3000)
     }
   },
   methods: {
