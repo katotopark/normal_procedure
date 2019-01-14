@@ -39,7 +39,7 @@ export default {
     counter() {
       if (this.counter == 2)
         setTimeout(() => {
-          this.pushRoute()
+          // this.pushRoute()
         }, 3000)
     }
   },

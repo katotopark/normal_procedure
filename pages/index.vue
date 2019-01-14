@@ -4,30 +4,47 @@
       antialias
       style="height: 100vh;">
       <vgl-scene>
-        <vgl-box-geometry name="box"/>
-        <vgl-sphere-geometry
-          name="sphere"/>
-        <vgl-mesh-standard-material
-          name="std"/>
-        <vgl-mesh
-          geometry="box"
-          material="std"/>
-        <vgl-ambient-light
-          color="#ccffdc"/>
-        <vgl-directional-light
-          position="0 1 1"/>
+        <span
+          v-for="elem in unitCount"
+          :key="elem.key">
+          <vgl-box-geometry
+            :name="`${elem}`"
+            :width="unitSize"
+            :height="unitSize"
+            :depth="unitSize"
+            width-segments="3"
+            height-segments="2"/>
+          <vgl-mesh
+            ref="test"
+            :position="`${elem}*${x} ${y/20} ${z/20}`"
+            :geometry="`${elem}`"
+            material="yoi"/>
+          <vgl-mesh-basic-material
+            name="yoi"
+            color="#bb90ad"/>
+        </span>
+        
       </vgl-scene>
       <vgl-perspective-camera
-        orbit-position="5 1 1;"/>
+        orbit-position="8 1 1;"/>
     </vgl-renderer>
   </div>
 </template>
 <script>
-import VueGL from 'three'
-
 export default {
   data() {
-    return {}
+    return {
+      col: '#ccffdc',
+      zoom: 50,
+      unitCount: 3,
+      unitSize: 1,
+      x: 50,
+      y: 50,
+      z: 50
+    }
+  },
+  mounted() {
+    console.log('this is test', this.$refs.test)
   }
 }
 </script>
