@@ -4,9 +4,11 @@
     type="flex"
     justify="center">
     <el-col
+      v-if="counter == 0"
       :span="12"
       class="form">
-      <span v-if="counter == 0">
+      <span v-if="errors.length !== 0">{{ errors }}</span>
+      <span ref="container">
         <input-component
           :data-obj="userObj"
           :input-props="inputProps"
@@ -17,9 +19,11 @@
           :labels="buttonLabels"
           @handle-click="handleClick"/>
       </span>
-      <span v-else-if="counter == 1">
-        <assigner-component/>
-      </span>
+    </el-col>
+    <el-col
+      v-else-if="counter == 1"
+      :span="12">
+      <assigner-component :width-prop="containerWidth"/>
     </el-col>
   </el-row>
 </template>
@@ -47,16 +51,20 @@ export default {
       name: '',
       bot: '',
       counter: 0,
+      containerWidth: 0,
       errors: []
     }
   },
   watch: {
     counter() {
-      if (this.counter == 1)
-        setTimeout(() => {
-          this.pushRoute()
-        }, 3000)
+      // if (this.counter == 1)
+      //   setTimeout(() => {
+      //     // this.pushRoute()
+      //   }, 3000)
     }
+  },
+  mounted() {
+    this.containerWidth = this.$refs.container.offsetParent.clientWidth
   },
   methods: {
     catchName(e) {
@@ -78,6 +86,7 @@ export default {
           }
           console.log('user registered', this.userObj)
           this.counter = 1
+          this.errors = []
         }
       } else if (e.id == 1) {
         this.userObj = {

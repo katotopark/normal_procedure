@@ -41,8 +41,7 @@ export default {
   width: 100%;
   height: 4rem;
   border: 0px;
-  /* background-color: rgb(247, 244, 204); */
-  background-color: transparent;
+  background-color: rgb(247, 244, 204);
   color: black;
   border: 2px solid black;
 }
