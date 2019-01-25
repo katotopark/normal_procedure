@@ -24,12 +24,16 @@
       v-else-if="counter == 1"
       :span="12">
       <assigner-component :width-prop="containerWidth"/>
+      <text-component
+        :text-strings="textStrings"
+        :style-obj="textStyle"/>
     </el-col>
   </el-row>
 </template>
 
 <script>
 import AssignerComponent from '../components/AssignerComponent.vue'
+import TextComponent from '../components/TextComponent.vue'
 import InputComponent from '../components/InputComponent.vue'
 import ButtonComponent from '../components/ButtonComponent.vue'
 
@@ -37,7 +41,8 @@ export default {
   components: {
     InputComponent,
     ButtonComponent,
-    AssignerComponent
+    AssignerComponent,
+    TextComponent
   },
   data() {
     return {
@@ -50,6 +55,18 @@ export default {
       buttonLabels: ['Submit', 'Clear'],
       name: '',
       bot: '',
+      textStrings:
+        'You have been assigned a case in the Department of BLABLA. Your case number is AB12345.',
+      textStyle: {
+        fontFamily: 'InputMonoCondensedItalic',
+        fontSize: '1.1rem',
+        marginTop: '30px',
+        padding: '25px 7px',
+        border: '2px solid black',
+        backgroundColor: 'black',
+        color: 'white',
+        display: 'block'
+      },
       counter: 0,
       containerWidth: 0,
       errors: []
@@ -93,6 +110,7 @@ export default {
           name: '',
           bot: ''
         }
+        this.errors = []
       }
     },
     checkForm() {

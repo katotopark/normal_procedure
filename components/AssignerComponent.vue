@@ -4,7 +4,12 @@
   </div>
 </template>
 <script>
-var components = {}
+import TextComponent from './TextComponent.vue'
+
+var components = {
+  TextComponent
+}
+
 if (process.client) {
   const VueP5 = require('vue-p5')
   components.VueP5 = VueP5

@@ -11,6 +11,7 @@
           <el-col :span="22">
             <el-input
               v-model="dataObj[propsArr[index]]"
+              :rows="1"
               :placeholder="propsArr[index]"
               type="textarea"
               @change="$emit('catch-input', {

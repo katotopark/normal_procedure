@@ -29,7 +29,12 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['@/plugins/element-ui', '@/plugins/faker', '@/plugins/three'],
+  plugins: [
+    '@/plugins/element-ui',
+    '@/plugins/faker',
+    '@/plugins/three',
+    '@plugins/vue-moment-lib'
+  ],
 
   /*
   ** Nuxt.js modules
