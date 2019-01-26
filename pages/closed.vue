@@ -6,7 +6,7 @@
     <el-col :span="12">
       <time-component
         :current-time="currentTime"/>
-      <span>{{ returnTime() }}</span>
+      <span style="display: none;">{{ returnTime() }}</span>
     </el-col>
   </el-row>
 </template>

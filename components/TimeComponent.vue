@@ -4,11 +4,14 @@
     justify="center">
     <el-col
       :span="12">
+      <text-component
+        :text-strings="timeStrings"
+        :style-obj="timeStyle"/>
       <assigner-component :width-prop="containerWidth"/>
       <div ref="container">
         <text-component
-          :text-strings="textStrings"
-          :style-obj="textStyle"/>
+          :text-strings="apologyStrings"
+          :style-obj="apologyStyle"/>
       </div>
     </el-col>
   </el-row>
@@ -31,18 +34,37 @@ export default {
   data() {
     return {
       containerWidth: 0,
-      textStrings: 'SORRY',
-      textStyle: {
+      timeStrings: 'CURRENT TIME',
+      apologyStyle: {
         fontFamily: 'InputMonoCondensedItalic',
-        fontSize: '1.4rem',
+        fontSize: '1rem',
         marginTop: '20px',
-        padding: '25px 7px',
+        padding: '10px 7px',
         border: '2px solid black',
         backgroundColor: 'black',
         color: 'white',
         display: 'block',
         textAlign: 'center'
+      },
+      timeStyle: {
+        fontFamily: 'InputMonoCondensed',
+        fontSize: '1.5rem',
+        marginBottom: '20px',
+        padding: '5px 0px',
+        borderBottom: '2px solid black',
+        borderColor: 'black',
+        backgroundColor: 'transparent',
+        color: 'black',
+        display: 'block',
+        textAlign: 'center'
       }
+    }
+  },
+  computed: {
+    apologyStrings() {
+      let string
+      this.currentTime.s % 4 == 0 ? (string = 'sorry') : (string = '')
+      return string
     }
   },
   mounted() {

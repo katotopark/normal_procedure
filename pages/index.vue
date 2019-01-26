@@ -5,7 +5,7 @@
       class="log-component">
       <span>LOG</span>
       <span
-        v-for="log in dummyLog"
+        v-for="log in eventLog"
         :key="log.key">
         <text-component
           :text-strings="log"
@@ -24,7 +24,8 @@
       <menu-component
         id="buttons"
         :menu-obj="menuObj"
-        @handle-click="handleClick"/>
+        @handle-click="handleClick"
+        @handle-input="handleInput"/>
     </el-col>
   </el-row>
 </template>
@@ -42,7 +43,7 @@ export default {
   },
   data() {
     return {
-      dummyLog: [],
+      eventLog: [],
       textStyle: {
         backgroundColor: 'black',
         color: 'white',
@@ -93,26 +94,34 @@ export default {
       }
     }
   },
+  watch: {},
   created() {
-    for (let i = 0; i < 6; i++) {
-      let log = `@R2R: ${Faker.lorem.sentences(1)}`
-      this.dummyLog.push(log)
+    for (let i = 0; i < 2; i++) {
+      let log = Faker.lorem.sentences(1)
+      this.eventLog.push(log)
     }
   },
   methods: {
     handleClick(e) {
       const menuItem = this.menuObj.labels[e.label]
       menuItem.open == false ? (menuItem.open = true) : (menuItem.open = false)
-
-      // if (e.id == 0) {
-      //   if (menuItem.open) console.log('opening', e.label)
-      //   else if (!menuItem.open) console.log('closing', e.label)
-      // } else if (e.id == 1) {
-      //   if (menuItem.open) console.log('opening', e.label)
-      //   else if (!menuItem.open) console.log('closing', e.label)
-      // } else if (e.id == 2) {
-      //   console.log('deregulating')
-      // }
+    },
+    handleInput(e) {
+      let log
+      if (e.parent.id == 0 && e.parent.label == 'internal') {
+        if (e.id == 0) {
+          log = `You're sending a ${e.label} within the Department`
+        } else if (e.id == 1) {
+          log = `You're sending a ${e.label} within the Department`
+        }
+      } else if (e.parent.id == 1 && e.parent.label == 'external') {
+        if (e.id == 0) {
+          log = `You're getting external ${e.label} help.`
+        } else if (e.id == 1) {
+          log = `You're getting external ${e.label} help.`
+        }
+      }
+      this.eventLog.push(log)
     }
   }
 }

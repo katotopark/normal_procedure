@@ -10,9 +10,10 @@
       </el-button>
       <span v-if="menuObj.labels[button].open">
         <el-button
-          v-for="sub in menuObj.labels[button].subLabels"
+          v-for="(sub, i) in menuObj.labels[button].subLabels"
           :key="sub.key"
-          :style="menuObj.style.sub">{{ sub.toUpperCase() }}</el-button>
+          :style="menuObj.style.sub"
+          @click="$emit('handle-input', {parent: {label:button,id:index}, id: i, label: sub})">{{ sub.toUpperCase() }}</el-button>
       </span>
     </el-row>
   </div>
