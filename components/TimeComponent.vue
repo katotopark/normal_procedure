@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       containerWidth: 0,
-      textStrings: 'sorry',
+      textStrings: 'SORRY',
       textStyle: {
         fontFamily: 'InputMonoCondensedItalic',
         fontSize: '1.4rem',
@@ -46,7 +46,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$refs)
     this.containerWidth = this.$refs.container.clientWidth * 2
   }
 }
