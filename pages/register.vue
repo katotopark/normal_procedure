@@ -36,6 +36,7 @@ import AssignerComponent from '../components/AssignerComponent.vue'
 import TextComponent from '../components/TextComponent.vue'
 import InputComponent from '../components/InputComponent.vue'
 import ButtonComponent from '../components/ButtonComponent.vue'
+import db from '../plugins/firebase'
 
 export default {
   components: {
@@ -50,6 +51,7 @@ export default {
         name: '',
         bot: ''
       },
+      users: [],
       inputProps: { name: { type: 'input' }, bot: { type: 'select' } },
       botOptions: [{ label: 'R2R', value: 0 }, { label: 'JMIA', value: 1 }],
       buttonLabels: ['Submit', 'Clear'],
@@ -72,12 +74,21 @@ export default {
       errors: []
     }
   },
+  firebase: {
+    users: {
+      source: db.ref('/users'),
+
+      cancelCallback(err) {
+        console.error('Error in registrations firestore:', err)
+      }
+    }
+  },
   watch: {
     counter() {
-      // if (this.counter == 1)
-      //   setTimeout(() => {
-      //     // this.pushRoute()
-      //   }, 3000)
+      if (this.counter == 1)
+        setTimeout(() => {
+          this.pushRoute()
+        }, 3000)
     }
   },
   mounted() {
@@ -102,6 +113,7 @@ export default {
             bot: this.bot
           }
           console.log('user registered', this.userObj)
+          // this.$firebaseRefs.users.push(this.userObj)
           this.counter = 1
           this.errors = []
         }

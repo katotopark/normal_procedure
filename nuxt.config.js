@@ -33,7 +33,8 @@ module.exports = {
     '@/plugins/element-ui',
     '@/plugins/faker',
     '@/plugins/three',
-    '@plugins/vue-moment-lib'
+    '@/plugins/vue-moment-lib',
+    '@/plugins/vuefire'
   ],
 
   /*
