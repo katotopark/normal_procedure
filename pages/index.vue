@@ -20,7 +20,7 @@
     <el-col
       :span="6"
       class="menu-component">
-      <span>MENU</span>
+      <span>FILE CABINET</span>
       <menu-component
         id="buttons"
         :menu-obj="menuObj"
