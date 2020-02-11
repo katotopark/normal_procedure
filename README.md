@@ -2,23 +2,6 @@
 
 > masters_project@hFk_Bremen/DM
 
-## Build Setup
-
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-```
-
 “We no longer like to think about bureaucracy, yet it informs every aspect of our existence. It is as if, as a planetary civilization, we have decided to clap our hands over our ears and start humming whenever this topic comes up.”
 
 Normal Procedure is a web-based pseudo-game that roams in the bureaucratic realm. Its raison d’être is to narrate the cumbersome experience when faced with such an engagement.
